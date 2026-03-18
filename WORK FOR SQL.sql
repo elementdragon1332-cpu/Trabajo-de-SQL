@@ -1,3 +1,5 @@
+Esse foi feito por mim e pela IA
+
 -- 1. Criar o Schema (se já existir, pode dar erro - nesse caso pule essa linha ou use DROP DATABASE IF EXISTS DESAFIO;)
 CREATE DATABASE DESAFIO;
 USE DESAFIO;
