@@ -1,8 +1,8 @@
--- 1. Criar o Schema (se já existir, pode dar erro - nesse caso pule essa linha ou use DROP DATABASE IF EXISTS DESAFIO;)
+
 CREATE DATABASE DESAFIO;
 USE DESAFIO;
 
--- 2. Criar as tabelas
+
 CREATE TABLE Livros (
     id_livro INT AUTO_INCREMENT PRIMARY KEY,
     titulo VARCHAR(150) NOT NULL,
@@ -20,7 +20,7 @@ CREATE TABLE Emprestimos (
     FOREIGN KEY (id_livro) REFERENCES Livros(id_livro)
 );
 
--- 3. Inserir 10 linhas em Livros
+
 INSERT INTO Livros (titulo, autor, ano_publicacao, preco) VALUES
 ('O Senhor dos Anéis', 'J.R.R. Tolkien', 1954, 89.90),
 ('1984', 'George Orwell', 1949, 49.90),
@@ -46,20 +46,15 @@ INSERT INTO Emprestimos (id_livro, nome_usuario, data_emprestimo, data_devolucao
 (9, 'Isabela Ferreira', '2025-11-25', '2025-12-10'),
 (4, 'João Pereira', '2025-12-12', NULL);
 
--- 4. Comandos solicitados (execute um por um depois que as tabelas estiverem criadas e com dados)
-
--- a) 1 DML - UPDATE (exemplo: aumentar 20% nos livros antigos)
 UPDATE Livros
 SET preco = preco * 1.20
 WHERE ano_publicacao < 1900;
 
--- b) 1 DQL - SELECT simples
 SELECT titulo, autor, preco 
 FROM Livros 
 WHERE preco > 50.00 
 ORDER BY preco DESC;
 
--- c) 3 funções agregadas
 SELECT COUNT(*) AS total_livros FROM Livros;
 
 SELECT AVG(preco) AS preco_medio FROM Livros;
@@ -67,7 +62,6 @@ SELECT AVG(preco) AS preco_medio FROM Livros;
 SELECT MAX(preco) AS mais_caro, MIN(preco) AS mais_barato 
 FROM Livros;
 
--- d) 2 com agrupamento (GROUP BY)
 SELECT nome_usuario, COUNT(*) AS qtd_emprestimos
 FROM Emprestimos
 GROUP BY nome_usuario
@@ -79,7 +73,6 @@ LEFT JOIN Emprestimos e ON l.id_livro = e.id_livro
 GROUP BY l.id_livro, l.titulo
 ORDER BY qtd_vezes_emprestado DESC;
 
--- e) 1 com agrupamento + JOIN
 SELECT 
     l.autor,
     COUNT(l.id_livro) AS qtd_livros,
